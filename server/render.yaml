@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: mindtube-backend
+    env: node
+    buildCommand: ./render-build.sh
+    startCommand: node index.js
+    envVars:
+      - key: PORT
+        value: 10000
