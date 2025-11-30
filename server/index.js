@@ -29,7 +29,10 @@ console.log = (...args) => {
     originalConsoleLog.apply(console, args);
 };
 
-app.use(cors());
+const CLIENT_URL = process.env.CLIENT_URL || '*';
+app.use(cors({
+    origin: CLIENT_URL
+}));
 app.use(express.json());
 
 // Helper to run yt-dlp and get JSON
