@@ -64,8 +64,8 @@ const getYtDlpJson = (url) => {
     });
 };
 
-// YouTube Info Endpoint
-app.post('/api/youtube/info', async (req, res) => {
+// YouTube Info Handler
+const handleYoutubeInfo = async (req, res) => {
     try {
         const { url } = req.body;
         if (!url) return res.status(400).json({ error: 'URL is required' });
@@ -83,7 +83,11 @@ app.post('/api/youtube/info', async (req, res) => {
         console.error('YouTube Info Error:', error);
         res.status(500).json({ error: 'Failed to fetch video info', details: error.message });
     }
-});
+};
+
+// YouTube Info Endpoints
+app.post('/api/youtube/info', handleYoutubeInfo);
+app.post('/youtube/info', handleYoutubeInfo);
 
 // YouTube Download Endpoint
 app.get('/api/youtube/download', async (req, res) => {
